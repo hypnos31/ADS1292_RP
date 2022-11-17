@@ -110,13 +110,13 @@ def save(data):
         
         file.write('{} , {} , {} \n'.format(status,chan1,chan2))
         
-def readECG():#The ECG data consists of 72 bits of data, of which byte 4:6 is ch1
+def readECG():#CH1 VA DEL BIT 4:6
     data =[]
     if ads1292_ready==1:
         GPIO.output(CS_gpio, False)
         time.sleep(0.0002)
         for i in range(9):
-            data.append(spi.xfer([0XFF])[0])#Hence, send 9 times a dummy byte to get the data in return from the ADS
+            data.append(spi.xfer([0XFF])[0])
         
         GPIO.output(CS_gpio,True)
     return data
